@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView : View{
     
-    
     @State private var firstName = ""
     @State private var sesiPagi = false
     @State private var sesiSiang = false
