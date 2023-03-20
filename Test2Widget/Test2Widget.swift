@@ -68,7 +68,7 @@ struct Test2WidgetEntryView : View {
     //@State var text.self = entry.storeData.showText
     // var timer : Timer? = nil
     func updateText(){
-        text = "checkin bang"
+        text = "checkin bangg"
     }
     var body: some View {
         
