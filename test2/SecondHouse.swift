@@ -10,6 +10,7 @@ import WidgetKit
 
 struct SecondHouse {
     @AppStorage("CreateWidget", store: UserDefaults(suiteName: "group.binus")) var primaryData : Data = Data()
+    var a
     
     let storeData : StoreData
     
