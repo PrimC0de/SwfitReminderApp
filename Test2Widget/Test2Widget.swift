@@ -68,18 +68,20 @@ struct Test2WidgetEntryView : View {
     //@State var text.self = entry.storeData.showText
     // var timer : Timer? = nil
     func updateText(){
-        text = "checkin bangg"
+        text = "checkin bangg!!!!"
     }
+    
+    let formatter = DateFormatter()
     var body: some View {
         
         let chromeWebsiteURL = URL(string: "googlechrome://smashswift.com")!
         
         
         ZStack{
-            if isChekced {
+            //if isChekced {
                 Text(entry.storeData.showText).font(.system(size: 24, weight: .bold, design: .default)).onAppear()
                 
-            }
+            //}
             //ini text untuk data dari button 'udah ngab'
             
             
@@ -116,9 +118,17 @@ struct Test2WidgetEntryView : View {
                 self.updateText()
                 
                 // Schedule timer to call updateText function every 24 hours
-                let timer = Timer(fire: Calendar.current.nextDate(after: Date(), matching: DateComponents(hour: 0), matchingPolicy: .nextTime)!, interval: 86400, repeats: true) { _ in
+                let timer = Timer(fire: Calendar.current.nextDate(after: Date(), matching: DateComponents(hour: 9, minute: 24), matchingPolicy: .nextTime)!, interval: 86400, repeats: true) { _ in
                     self.updateText()
                 }
+                
+//                let now = Date()
+//                        formatter.dateFormat = "HH:mm"
+//                        let timeString = formatter.string(from: now)
+//
+//                        let widgetText = now.hour == 0 && now.minute == 0 ? "Midnight!" : timeString
+//                        
+//                        return Text(widgetText)
                 RunLoop.main.add(timer, forMode: .common)
                 
                 

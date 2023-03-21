@@ -33,7 +33,7 @@ struct ContentView : View{
                       //  Toggle("", isOn: $sesiPagi)
                         Button("Sesi pagi", action: sendData).offset(x: -100)
                         Button("Save", action: sendData)
-                        Button("Udah ngab", action: udahNgab)
+                        Button("Udah ngabb", action: udahNgab)
                         
                     }
                 }
