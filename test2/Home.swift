@@ -21,23 +21,26 @@ struct ContentView : View{
     
     var body: some View{
         NavigationView{
-            Form{
-                TextField("1. ", text: $firstName)
-                Toggle("Sesi pagi", isOn: $sesiPagi)
-                Toggle("Sesi siang", isOn: $sesiSiang)
-               
-                //cara buat kalo salah satu toggle dihidupin, toggle yg lain ga bisa diotak-atik itu gmn?
-            }.navigationTitle("Remind me to :")
-                .toolbar{
-                    ToolbarItemGroup(placement: .navigationBarTrailing){
-                      //  Toggle("", isOn: $sesiPagi)
-                        Button("Sesi pagi", action: sendData).offset(x: -100)
-                        Button("Save", action: sendData)
-                        Button("Udah ngab", action: udahNgab)
-                        
+            VStack{
+                Form{
+                    TextField("1. ", text: $firstName)
+                    Toggle("Sesi pagi", isOn: $sesiPagi)
+                    Toggle("Sesi siang", isOn: $sesiSiang)
+                    
+                    //cara buat kalo salah satu toggle dihidupin, toggle yg lain ga bisa diotak-atik itu gmn?
+                }.navigationTitle("Remind me to :")
+                    .toolbar{
+                        ToolbarItemGroup(placement: .navigationBarTrailing){
+                            //  Toggle("", isOn: $sesiPagi)
+                            Button("Sesi pagi", action: sendData).offset(x: -100)
+                            Button("Save", action: sendData)
+                            Button("Udah ngab", action: udahNgab)
+                            
+                        }
                     }
-                }
-            
+                
+                Text("asdasdasd")
+            }
             
         }
          
