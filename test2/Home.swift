@@ -9,39 +9,70 @@ import SwiftUI
 
 struct ContentView : View{
     
-    
     @State private var firstName = ""
     @State private var sesiPagi = false
     @State private var sesiSiang = false
     @State private var clockedIn = false
     
     var thisDate = DateComponents()
-//    thisDate.hour = 8;
-//    thisDate.minute = 50;
-//    let trigger = UNCalendarNotificationTrigger(dateMatching: thisDate, repeats: true)
+    //    thisDate.hour = 8;
+    //    thisDate.minute = 50;
+    //    let trigger = UNCalendarNotificationTrigger(dateMatching: thisDate, repeats: true)
     
     var body: some View{
-        NavigationView{
-            Form{
-                TextField("1. ", text: $firstName)
-                Toggle("Sesi pagi", isOn: $sesiPagi)
-                Toggle("Sesi siang", isOn: $sesiSiang)
-               
-                //cara buat kalo salah satu toggle dihidupin, toggle yg lain ga bisa diotak-atik itu gmn?
-            }.navigationTitle("Remind me to :")
-                .toolbar{
-                    ToolbarItemGroup(placement: .navigationBarTrailing){
-                      //  Toggle("", isOn: $sesiPagi)
-                        Button("Sesi pagi", action: sendData).offset(x: -100)
-                        Button("Save", action: sendData)
-                        Button("Udah ngab", action: udahNgab)
-                        
+        
+            ZStack {
+                VStack {
+                    HStack {
+                        Image("CloudTop")
+                            .resizable()
+                            .scaledToFit()
+                            .offset(y: -80)
                     }
-                }
+                    Spacer()
+                    HStack {
+                        Image("CloudBtm")
+                            .resizable()
+                            .scaledToFit()
+                            .offset(y: 80)
+                    }
+                }.edgesIgnoringSafeArea(.all)
+                    
+                VStack {
+                    Spacer()
+                    Text("Clock-in ngab!!!")
+                        .font(Font.custom("Futura", size: 30))
+                        .fontWeight(.bold)
+                        .foregroundColor(Color(red: 26/255, green: 66/255, blue: 157/255))
+                    Spacer()
+                    
+                    VStack {
+                        Image("Cico")
+                            .resizable()
+                            .scaledToFit()
+                            .scaleEffect(0.85)
+                        
+                        Text("jangan lupa clock-in\nkalau udah di lokasi ya ngab")
+                            .font(Font.custom("Futura", size: 20))
+                            .multilineTextAlignment(.center)
+                    }.offset(y: -15)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        udahNgab()
+                    }, label: {
+                        Text("Udah Ngab")
+                            .font(Font.custom("Futura", size: 20))
+                            .foregroundColor(.white)
+                            .frame(width: 200, height: 60)
+                            .background(Color(red: 26/255, green: 66/255, blue: 157/255))
+                            .cornerRadius(30)
+                    })
+                    Spacer()
+                }.padding(.vertical, 80).offset(y: -15)
             
-            
-        }
-         
+            }
     }
     func sendData(){
         print("data sent")
