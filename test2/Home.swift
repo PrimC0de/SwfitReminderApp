@@ -14,6 +14,9 @@ struct ContentView : View{
     @State private var sesiSiang = false
     @State private var clockedIn = false
     
+    private var listNgabers = Ngabers.allValues
+    @State var status: Status = .belumClockIn
+    
     var thisDate = DateComponents()
     //    thisDate.hour = 8;
     //    thisDate.minute = 50;
@@ -39,6 +42,20 @@ struct ContentView : View{
                 }.edgesIgnoringSafeArea(.all)
                     
                 VStack {
+                    switch status {
+                    case .belumClockIn:
+                        Text("a")
+                        
+                    case .sudahClockIn:
+                        Text("b")
+                        
+                    case .belumClockOut:
+                        Text("c")
+                        
+                    case .sudahClockOut:
+                        Text("d")
+                        
+                    }
                     Spacer()
                     Text("Clock-in ngab!!!")
                         .font(Font.custom("Futura", size: 30))
@@ -47,7 +64,7 @@ struct ContentView : View{
                     Spacer()
                     
                     VStack {
-                        Image("Cico")
+                        Image("ClockOut")
                             .resizable()
                             .scaledToFit()
                             .scaleEffect(0.85)
