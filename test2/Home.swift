@@ -15,7 +15,7 @@ struct ContentView : View{
     @State private var clockedIn = false
     
     private var listNgabers = Ngabers.allValues
-    @State var status: Status = .belumClockIn
+    @State var status: Status = .belumClockOut
     
     var thisDate = DateComponents()
     //    thisDate.hour = 8;
@@ -110,7 +110,6 @@ struct ContentView : View{
 
 struct ContentView_Previews: PreviewProvider{
     static var previews: some View{
-        
         ContentView()
     }
 }
