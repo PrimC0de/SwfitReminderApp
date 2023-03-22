@@ -93,7 +93,7 @@ struct ContentView : View{
     }
     func sendData(){
         print("data sent")
-        storeData(text: firstName)
+        storeData(text: firstName, clockedIn: true)
         //storeData(text: "Nice, you have checked-in!")
     }
     func gantiSesi(){
@@ -101,8 +101,8 @@ struct ContentView : View{
     }
     
     func udahNgab(){
-        
-        storeData(text: "Nice, you have checked-in!")
+        clockedIn.toggle()
+        storeData(text: "Nice, you have checked-in!", clockedIn: clockedIn)
     }
     
 }
@@ -115,9 +115,9 @@ struct ContentView_Previews: PreviewProvider{
     }
 }
 
-func storeData(text: String){
+func storeData(text: String, clockedIn: Bool){
     //bikin initialization pakai suruhan check in setiap hari. berarti harus main ama tanggal
-    let storeData = StoreData(showText: text)
+    let storeData = StoreData(showText: text, clockedIn: clockedIn)
     
     let primaryData = SecondHouse(storeData: storeData)
     primaryData.encodeData()

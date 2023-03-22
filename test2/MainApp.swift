@@ -9,6 +9,6 @@ import Foundation
 
 struct StoreData : Codable{
     var showText : String
-    var asd: Date
+    var clockedIn: Bool
     
 }

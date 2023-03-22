@@ -10,11 +10,12 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     //var clockedIn : Bool
+
     
     @AppStorage("CreateWidget", store: UserDefaults(suiteName: "group.binus")) var primaryData : Data = Data()
     
     func placeholder(in context: Context) -> SimpleEntry {
-        let storeData = StoreData(showText: "-")
+        let storeData = StoreData(showText: "-", clockedIn: false)
         
         return SimpleEntry(storeData: storeData)
     }
@@ -63,23 +64,27 @@ struct Test2WidgetEntryView : View {
     @State var status: String = ""
     @State var buttonTitle: String = "Button not clicked"
     @State var text: String = ""
-    @State var isChekced: Bool = false
+    @State var text2: String = ""
+    var clockedIn: Bool
     var entry: Provider.Entry
     //@State var text.self = entry.storeData.showText
     // var timer : Timer? = nil
     func updateText(){
-        text = "checkin bangg"
+        text = "checkin bangg!!!!"
     }
+    
+    let formatter = DateFormatter()
+    let calendar = Calendar.current
     var body: some View {
         
         let chromeWebsiteURL = URL(string: "googlechrome://smashswift.com")!
         
         
         ZStack{
-            if isChekced {
-                Text(entry.storeData.showText).font(.system(size: 24, weight: .bold, design: .default)).onAppear()
+            
+                Text(text2).font(.system(size: 24, weight: .bold, design: .default)).onAppear()
                 
-            }
+            
             //ini text untuk data dari button 'udah ngab'
             
             
@@ -91,7 +96,7 @@ struct Test2WidgetEntryView : View {
             //  sitasi 8:50
             
             
-            Text(text).font(.system(size: 24, weight: .bold, design: .default)).onAppear()
+//            Text(text).font(.system(size: 24, weight: .bold, design: .default)).onAppear()
             
             
             
@@ -116,11 +121,40 @@ struct Test2WidgetEntryView : View {
                 self.updateText()
                 
                 // Schedule timer to call updateText function every 24 hours
-                let timer = Timer(fire: Calendar.current.nextDate(after: Date(), matching: DateComponents(hour: 0), matchingPolicy: .nextTime)!, interval: 86400, repeats: true) { _ in
-                    self.updateText()
-                }
-                RunLoop.main.add(timer, forMode: .common)
+//                let timer = Timer(fire: Calendar.current.nextDate(after: Date(), matching: DateComponents(hour: 9, minute: 24), matchingPolicy: .nextTime)!, interval: 86400, repeats: true) { _ in
+//                    self.updateText()
+//                }
                 
+//                let now = Date()
+//                        formatter.dateFormat = "HH:mm"
+//                        let timeString = formatter.string(from: now)
+//
+//                        let widgetText = now.hour == 0 && now.minute == 0 ? "Midnight!" : timeString
+//
+//                        return Text(widgetText)
+                //RunLoop.main.add(timer, forMode: .common)
+                
+                let now = Date()
+                        formatter.dateFormat = "HH:mm"
+                        let timeString = formatter.string(from: now)
+                        
+                        let hour = calendar.component(.hour, from: now)
+                        let minute = calendar.component(.minute, from: now)
+                        
+//                        text = hour == 11 && minute == 13 ? "Midnight!" : "Checkin bang"
+                if((hour == 0 && minute==0) && (hour<=13 && minute <= 17)){
+                    text = "CHeckin bang"
+                    text2 = ""
+                    
+                }else if(!(hour<=13 && minute <= 17) && clockedIn){
+                    text = ""
+                    text2 = "Nice, you have checked-in"
+                    
+                }
+
+                
+                
+                        Text(text)
                 
                 
             }
@@ -168,7 +202,7 @@ struct Test2Widget: Widget {
     
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            Test2WidgetEntryView(entry: entry)
+            Test2WidgetEntryView(clockedIn: entry.storeData.clockedIn, entry: entry)
         }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
@@ -176,9 +210,9 @@ struct Test2Widget: Widget {
 }
 
 struct Test2Widget_Previews: PreviewProvider {
-    static let storeData = StoreData(showText: "-")
+    static let storeData = StoreData(showText: "-", clockedIn: false)
     static var previews: some View {
-        Test2WidgetEntryView(entry: SimpleEntry(storeData: storeData))
+        Test2WidgetEntryView(clockedIn: storeData.clockedIn, entry: SimpleEntry(storeData: storeData))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

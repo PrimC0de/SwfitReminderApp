@@ -87,6 +87,7 @@
 		5D3737DE29C213E1003FACD9 /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		5D3737E029C21422003FACD9 /* SecondHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondHouse.swift; sourceTree = "<group>"; };
 		5D3737F529C2257D003FACD9 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		655A505F29C957D100B3E4C2 /* .gitignore.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = .gitignore.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +127,7 @@
 		5D37378B29C209C3003FACD9 = {
 			isa = PBXGroup;
 			children = (
+				655A505F29C957D100B3E4C2 /* .gitignore.md */,
 				5D3737DD29C21345003FACD9 /* Test2WidgetExtension.entitlements */,
 				5D37379629C209C3003FACD9 /* test2 */,
 				5D3737A729C209C4003FACD9 /* test2Tests */,
