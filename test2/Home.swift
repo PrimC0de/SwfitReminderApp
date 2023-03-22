@@ -21,33 +21,33 @@ struct ContentView : View{
     
     var body: some View{
         NavigationView{
-            VStack{
-                Form{
-                    TextField("1. ", text: $firstName)
-                    Toggle("Sesi pagi", isOn: $sesiPagi)
-                    Toggle("Sesi siang", isOn: $sesiSiang)
-                    
-                    //cara buat kalo salah satu toggle dihidupin, toggle yg lain ga bisa diotak-atik itu gmn?
-                }.navigationTitle("Remind me to :")
-                    .toolbar{
-                        ToolbarItemGroup(placement: .navigationBarTrailing){
-                            //  Toggle("", isOn: $sesiPagi)
-                            Button("Sesi pagi", action: sendData).offset(x: -100)
-                            Button("Save", action: sendData)
-                            Button("Udah ngab", action: udahNgab)
-                            
+            Form{
+                TextField("1. ", text: $firstName)
+                Toggle("Sesi pagi", isOn: $sesiPagi)
+                Toggle("Sesi siang", isOn: $sesiSiang)
+               
+                //cara buat kalo salah satu toggle dihidupin, toggle yg lain ga bisa diotak-atik itu gmn?
+            }.navigationTitle("Remind me to :")
+                .toolbar{
+                    ToolbarItemGroup(placement: .navigationBarTrailing){
+                      //  Toggle("", isOn: $sesiPagi)
+                        Button("Sesi pagi", action: sendData).offset(x: -100)
+                        Button("Save", action: sendData)
+                        if !clockedIn {
+                            Button("Udah ngabb", action: udahNgab)
                         }
+                        
+                        
                     }
-                
-                Text("asdasdasd")
-            }
+                }
+            
             
         }
          
     }
     func sendData(){
         print("data sent")
-        storeData(text: firstName)
+        storeData(text: firstName, clockedIn: true)
         //storeData(text: "Nice, you have checked-in!")
     }
     func gantiSesi(){
@@ -55,8 +55,8 @@ struct ContentView : View{
     }
     
     func udahNgab(){
-        
-        storeData(text: "Nice, you have checked-in!")
+        clockedIn.toggle()
+        storeData(text: "Nice, you have checked-in!", clockedIn: clockedIn)
     }
     
 }
@@ -69,9 +69,9 @@ struct ContentView_Previews: PreviewProvider{
     }
 }
 
-func storeData(text: String){
+func storeData(text: String, clockedIn: Bool){
     //bikin initialization pakai suruhan check in setiap hari. berarti harus main ama tanggal
-    let storeData = StoreData(showText: text)
+    let storeData = StoreData(showText: text, clockedIn: clockedIn)
     
     let primaryData = SecondHouse(storeData: storeData)
     primaryData.encodeData()
