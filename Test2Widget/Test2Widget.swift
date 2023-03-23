@@ -70,7 +70,7 @@ struct Test2WidgetEntryView : View {
     //@State var text.self = entry.storeData.showText
     // var timer : Timer? = nil
     func updateText(){
-        text = "checkin bangg!!!!"
+        text = "Jangan lupa check-in bang"
     }
     
     let formatter = DateFormatter()
@@ -142,19 +142,24 @@ struct Test2WidgetEntryView : View {
                         let minute = calendar.component(.minute, from: now)
                         
 //                        text = hour == 11 && minute == 13 ? "Midnight!" : "Checkin bang"
-                if((hour == 0 && minute==0) && (hour<=13 && minute <= 17)){
-                    text = "CHeckin bang"
+                if((hour == 0 && minute==0) && (hour<=8 && minute <= 49)){
+                    //button dihilangin sementara6
+                    text = "Checkin bang"
                     text2 = ""
                     
-                }else if(!(hour<=13 && minute <= 17) && clockedIn){
+                }else if(!(hour<=8 && minute <= 49) && (hour<=9 && minute <= 15) && clockedIn){
+                    //show button di waktu ini saja
                     text = ""
                     text2 = "Nice, you have checked-in"
                     
+                }else if((hour >= 9 && minute >= 16) && !clockedIn){
+                    //button dihilangin sementara
+                    text2 = "Check-in limit is 9:15"
+                    text = ""
                 }
-
-                
                 
                         Text(text)
+                        Text(text2)
                 
                 
             }
