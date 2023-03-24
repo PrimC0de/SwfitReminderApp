@@ -24,7 +24,11 @@
 		5D3737E129C21422003FACD9 /* SecondHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3737E029C21422003FACD9 /* SecondHouse.swift */; };
 		5D3737E229C215DC003FACD9 /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3737DE29C213E1003FACD9 /* MainApp.swift */; };
 		5D3737F629C2257D003FACD9 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3737F529C2257D003FACD9 /* Home.swift */; };
-		654771C429CACA3B007B92C6 /* Ngabers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654771C329CACA3B007B92C6 /* Ngabers.swift */; };
+		65F9CD5729CC6DFB00837C3E /* BelumClockIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9CD5629CC6DFB00837C3E /* BelumClockIn.swift */; };
+		65F9CD5929CC6E0500837C3E /* SudahClockIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9CD5829CC6E0500837C3E /* SudahClockIn.swift */; };
+		65F9CD5B29CC6E3500837C3E /* BelumClockOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9CD5A29CC6E3500837C3E /* BelumClockOut.swift */; };
+		65F9CD5D29CC6E4200837C3E /* SudahClockOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9CD5C29CC6E4200837C3E /* SudahClockOut.swift */; };
+		65F9CD6129CC718E00837C3E /* Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9CD6029CC718E00837C3E /* Phase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +92,12 @@
 		5D3737DE29C213E1003FACD9 /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		5D3737E029C21422003FACD9 /* SecondHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondHouse.swift; sourceTree = "<group>"; };
 		5D3737F529C2257D003FACD9 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		654771C329CACA3B007B92C6 /* Ngabers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ngabers.swift; sourceTree = "<group>"; };
 		655A505F29C957D100B3E4C2 /* .gitignore.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = .gitignore.md; sourceTree = "<group>"; };
+		65F9CD5629CC6DFB00837C3E /* BelumClockIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BelumClockIn.swift; sourceTree = "<group>"; };
+		65F9CD5829CC6E0500837C3E /* SudahClockIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudahClockIn.swift; sourceTree = "<group>"; };
+		65F9CD5A29CC6E3500837C3E /* BelumClockOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BelumClockOut.swift; sourceTree = "<group>"; };
+		65F9CD5C29CC6E4200837C3E /* SudahClockOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudahClockOut.swift; sourceTree = "<group>"; };
+		65F9CD6029CC718E00837C3E /* Phase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,8 +166,9 @@
 				5D37379729C209C3003FACD9 /* test2App.swift */,
 				5D3737DE29C213E1003FACD9 /* MainApp.swift */,
 				5D3737E029C21422003FACD9 /* SecondHouse.swift */,
+				65F9CD6029CC718E00837C3E /* Phase.swift */,
 				5D3737F529C2257D003FACD9 /* Home.swift */,
-				654771C329CACA3B007B92C6 /* Ngabers.swift */,
+				65F9CD5529CC685400837C3E /* Views */,
 				5D37379B29C209C4003FACD9 /* Assets.xcassets */,
 				5D37379D29C209C4003FACD9 /* Preview Content */,
 			);
@@ -210,6 +219,17 @@
 				5D3737D429C20D18003FACD9 /* Info.plist */,
 			);
 			path = Test2Widget;
+			sourceTree = "<group>";
+		};
+		65F9CD5529CC685400837C3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				65F9CD5629CC6DFB00837C3E /* BelumClockIn.swift */,
+				65F9CD5829CC6E0500837C3E /* SudahClockIn.swift */,
+				65F9CD5A29CC6E3500837C3E /* BelumClockOut.swift */,
+				65F9CD5C29CC6E4200837C3E /* SudahClockOut.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,10 +394,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D3737E129C21422003FACD9 /* SecondHouse.swift in Sources */,
+				65F9CD5729CC6DFB00837C3E /* BelumClockIn.swift in Sources */,
+				65F9CD5929CC6E0500837C3E /* SudahClockIn.swift in Sources */,
+				65F9CD5D29CC6E4200837C3E /* SudahClockOut.swift in Sources */,
 				5D3737F629C2257D003FACD9 /* Home.swift in Sources */,
 				5D3737DF29C213E1003FACD9 /* MainApp.swift in Sources */,
 				5D37379829C209C3003FACD9 /* test2App.swift in Sources */,
-				654771C429CACA3B007B92C6 /* Ngabers.swift in Sources */,
+				65F9CD6129CC718E00837C3E /* Phase.swift in Sources */,
+				65F9CD5B29CC6E3500837C3E /* BelumClockOut.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

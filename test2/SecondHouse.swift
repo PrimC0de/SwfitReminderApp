@@ -11,8 +11,7 @@ import WidgetKit
 struct SecondHouse {
     @AppStorage("CreateWidget", store: UserDefaults(suiteName: "group.binus")) var primaryData : Data = Data()
     
-    
-    let storeData : StoreData
+    let storeData: StoreData
     
     func encodeData(){
         guard let data = try? JSONEncoder().encode(storeData) else{

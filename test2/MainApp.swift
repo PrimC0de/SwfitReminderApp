@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct StoreData : Codable{
-    var showText : String
-    var clockedIn: Bool
-    
+struct StoreData: Codable {
+    var showText: String
+    var status: String
 }

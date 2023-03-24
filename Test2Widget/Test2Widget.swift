@@ -10,12 +10,10 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     //var clockedIn : Bool
-
-    
     @AppStorage("CreateWidget", store: UserDefaults(suiteName: "group.binus")) var primaryData : Data = Data()
     
     func placeholder(in context: Context) -> SimpleEntry {
-        let storeData = StoreData(showText: "-", clockedIn: false)
+        let storeData = StoreData(showText: "-", status: "Belum Clock-In")
         
         return SimpleEntry(storeData: storeData)
     }
@@ -54,18 +52,20 @@ struct SimpleEntry: TimelineEntry {
     let date: Date = Date()
     let storeData : StoreData
 }
+
 @objc protocol myProtocol{
     @objc func resetText()
 }
+
 struct Test2WidgetEntryView : View {
     
     //    let timer = Timer.publish(every: 86400, on: .init(), in: .current, options: .default)
     
-    @State var status: String = ""
     @State var buttonTitle: String = "Button not clicked"
     @State var text: String = ""
     @State var text2: String = ""
-    var clockedIn: Bool
+    var status: String
+    
     var entry: Provider.Entry
     //@State var text.self = entry.storeData.showText
     // var timer : Timer? = nil
@@ -78,8 +78,6 @@ struct Test2WidgetEntryView : View {
     var body: some View {
         
         let chromeWebsiteURL = URL(string: "googlechrome://smashswift.com")!
-        
-        
         ZStack{
             
                 Text(text2).font(.system(size: 24, weight: .bold, design: .default)).onAppear()
@@ -146,14 +144,11 @@ struct Test2WidgetEntryView : View {
                     text = "CHeckin bang"
                     text2 = ""
                     
-                }else if(!(hour<=13 && minute <= 17) && clockedIn){
+                }else if(!(hour<=13 && minute <= 17) && status == "Sudah Clock-In"){
                     text = ""
                     text2 = "Nice, you have checked-in"
                     
                 }
-
-                
-                
                         Text(text)
                 
                 
@@ -196,13 +191,12 @@ struct Test2WidgetEntryView : View {
     
 }
 
-
 struct Test2Widget: Widget {
     let kind: String = "Test2Widget"
     
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            Test2WidgetEntryView(clockedIn: entry.storeData.clockedIn, entry: entry)
+            Test2WidgetEntryView(status: entry.storeData.status, entry: entry)
         }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
@@ -210,9 +204,9 @@ struct Test2Widget: Widget {
 }
 
 struct Test2Widget_Previews: PreviewProvider {
-    static let storeData = StoreData(showText: "-", clockedIn: false)
+    static let storeData = StoreData(showText: "-", status: "Belum Clock-In")
     static var previews: some View {
-        Test2WidgetEntryView(clockedIn: storeData.clockedIn, entry: SimpleEntry(storeData: storeData))
+        Test2WidgetEntryView(status: storeData.status, entry: SimpleEntry(storeData: storeData))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
