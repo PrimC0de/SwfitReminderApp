@@ -24,6 +24,7 @@
 		5D3737E129C21422003FACD9 /* SecondHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3737E029C21422003FACD9 /* SecondHouse.swift */; };
 		5D3737E229C215DC003FACD9 /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3737DE29C213E1003FACD9 /* MainApp.swift */; };
 		5D3737F629C2257D003FACD9 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3737F529C2257D003FACD9 /* Home.swift */; };
+		654771C429CACA3B007B92C6 /* Ngabers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654771C329CACA3B007B92C6 /* Ngabers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,8 @@
 		5D3737DE29C213E1003FACD9 /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		5D3737E029C21422003FACD9 /* SecondHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondHouse.swift; sourceTree = "<group>"; };
 		5D3737F529C2257D003FACD9 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		654771C329CACA3B007B92C6 /* Ngabers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ngabers.swift; sourceTree = "<group>"; };
+		655A505F29C957D100B3E4C2 /* .gitignore.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = .gitignore.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,7 @@
 		5D37378B29C209C3003FACD9 = {
 			isa = PBXGroup;
 			children = (
+				655A505F29C957D100B3E4C2 /* .gitignore.md */,
 				5D3737DD29C21345003FACD9 /* Test2WidgetExtension.entitlements */,
 				5D37379629C209C3003FACD9 /* test2 */,
 				5D3737A729C209C4003FACD9 /* test2Tests */,
@@ -152,11 +156,12 @@
 			children = (
 				5D3737DC29C20EFD003FACD9 /* test2.entitlements */,
 				5D37379729C209C3003FACD9 /* test2App.swift */,
-				5D37379B29C209C4003FACD9 /* Assets.xcassets */,
-				5D37379D29C209C4003FACD9 /* Preview Content */,
 				5D3737DE29C213E1003FACD9 /* MainApp.swift */,
 				5D3737E029C21422003FACD9 /* SecondHouse.swift */,
 				5D3737F529C2257D003FACD9 /* Home.swift */,
+				654771C329CACA3B007B92C6 /* Ngabers.swift */,
+				5D37379B29C209C4003FACD9 /* Assets.xcassets */,
+				5D37379D29C209C4003FACD9 /* Preview Content */,
 			);
 			path = test2;
 			sourceTree = "<group>";
@@ -372,6 +377,7 @@
 				5D3737F629C2257D003FACD9 /* Home.swift in Sources */,
 				5D3737DF29C213E1003FACD9 /* MainApp.swift in Sources */,
 				5D37379829C209C3003FACD9 /* test2App.swift in Sources */,
+				654771C429CACA3B007B92C6 /* Ngabers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
