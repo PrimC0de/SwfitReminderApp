@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct ContentView : View{
     
@@ -15,8 +16,11 @@ struct ContentView : View{
     @State private var phase = phases[0]
     @State private var isButtonVisible = false
     @State private var currTime: String = "aa"
-    let formatter = DateFormatter()
+    @State private var alertNeedNotificationAuthorization = false
     
+    let notificationCenter = UNUserNotificationCenter.current()
+    
+    let formatter = DateFormatter()
     var thisDate = DateComponents()
     
     let date = Date()
@@ -105,6 +109,19 @@ struct ContentView : View{
             }.padding(.vertical, 80).offset(y: -15)
             
         }.onAppear{
+            
+            // Request Notification Permission
+            notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                
+                if let error = error {
+                    // Handle the error here.
+                    print(error)
+                }
+                
+                // Schedule Notification if allowed
+                scheduleNotification()
+            }
+            
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
                 let now = makeTime(hour: 12, minute: 51)
                 let calendar = Calendar.current
@@ -143,18 +160,14 @@ struct ContentView : View{
                     phase = phases[3]
                 }
                 
-                
-                
-                
-                //                if ((hour >= 8 && minute >= 50) && phase.status.rawValue == "Belum Clock-In")
-                //                {
-                //                    phase = phases[0]
-                //                }
-                //                else {
-                //                    phase = phases[3]
-                //                }
             }
         }
+        .alert(isPresented: $alertNeedNotificationAuthorization, content: {
+            Alert(
+                title: Text("Enable Notification Permission"),
+                message: Text("Unable to setup Notification, please allow notification permission in Settings!")
+            )
+        })
     }
     
     func dateToString(date: Date) -> String {
@@ -203,6 +216,59 @@ struct ContentView : View{
         
         let primaryData = SecondHouse(storeData: storeData)
         primaryData.encodeData()
+    }
+    
+    func scheduleNotification() {
+        notificationCenter.getNotificationSettings { (settings) in
+                    
+                    DispatchQueue.main.async
+                    {
+                        if(settings.authorizationStatus == .authorized)
+                        {
+                            // Clock In
+                            let content = UNMutableNotificationContent()
+                            content.title = "Clock-in!"
+                            content.body = "Dah waktunya Clock In Ngab!!"
+                            
+                            var dateComp = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: makeTime(hour: 8, minute: 50))
+                            
+                            var trigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: true)
+                            var request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                            
+                            self.notificationCenter.add(request) { (error) in
+                                if(error != nil)
+                                {
+                                    print("Error " + error.debugDescription)
+                                    return
+                                }
+                            }
+                            
+                            
+                            // Clock Out Notification
+                            let contentCo = UNMutableNotificationContent()
+                            contentCo.title = "Clock-out!"
+                            contentCo.body = "Jangan lupa Clock-Out, Ngab !!"
+                            
+                            dateComp = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: makeTime(hour: 12, minute: 50))
+                            
+                            trigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: true)
+                            request = UNNotificationRequest(identifier: UUID().uuidString, content: contentCo, trigger: trigger)
+                            
+                            self.notificationCenter.add(request) { (error) in
+                                if(error != nil)
+                                {
+                                    print("Error " + error.debugDescription)
+                                    return
+                                }
+                            }
+                        }
+                        else
+                        {
+                            alertNeedNotificationAuthorization = true
+                        }
+                        
+                    }
+                }
     }
 }
 
