@@ -50,60 +50,91 @@ struct SimpleEntry: TimelineEntry {
 
 struct Test2WidgetEntryView : View {
     @State var buttonTitle: String = "Button not clicked"
-    @State var text: String = ""
-    @State var text2: String = ""
-    var status: String
+    @State var status: String
+    @State private var title = "Saatnya clock-in"
+    let now = Date()
     
     var entry: Provider.Entry
     
-    func updateText(){
-        text = "checkin bangg!!!!"
-    }
-    
-    let formatter = DateFormatter()
-    let calendar = Calendar.current
     var body: some View {
         
-        let chromeWebsiteURL = URL(string: "googlechrome://smashswift.com")!
-        ZStack{
+        VStack {
             
-            Text(text2).font(.system(size: 24, weight: .bold, design: .default)).onAppear()
-
-            Text(text).font(.system(size: 24, weight: .bold, design: .default)).onAppear{
-                
-                let now = Date()
-                formatter.dateFormat = "HH:mm"
-                let timeString = formatter.string(from: now)
-                
-                let hour = calendar.component(.hour, from: now)
-                let minute = calendar.component(.minute, from: now)
-                
-                if((hour == 0 && minute==0) && (hour<=13 && minute <= 17)){
-                    text = "CHeckin bang"
-                    text2 = ""
-                    
-                }else if(!(hour<=13 && minute <= 17) && status == "Sudah Clock-In"){
-                    text = ""
-                    text2 = "Nice, you have checked-in"
-                    
+            if (now <= makeTime(hour: 8, minute: 50) && now >= makeTime(hour: 6, minute: 00)) {
+                // Sebelum Waktu
+                Text("Hari Baru")
+                    .font(Font.custom("Futura", size: 20))
+            } else if now >= makeTime(hour: 8, minute: 50) && now <= makeTime(hour: 9, minute: 15) {
+                // Waktu Clock In
+                if (status == "Belum Clock-In") {
+                    Text("Saatnya clock in")
+                        .font(Font.custom("Futura", size: 20))
+                } else if (status == "Sudah Clock-In") {
+                    Text("Happy learning!")
+                        .font(Font.custom("Futura", size: 20))
+                } else {
+                    Text("Saatnya clock in")
+                        .font(Font.custom("Futura", size: 20))
                 }
-                Text(text)
+            } else if now >= makeTime(hour: 9, minute: 15) && now <= makeTime(hour: 12, minute: 50) {
+                // Idle
+                Text("Happy learning!")
+                    .font(Font.custom("Futura", size: 20))
+            } else if (now > makeTime(hour: 12, minute: 50) && now <= makeTime(hour: 13, minute: 00)) {
+                // Waktu Clock Out
+                if (status == "Belum Clock-Out" || status == "Sudah Clock-In") {
+                    Text("Saatnya clock-out")
+                        .font(Font.custom("Futura", size: 20))
+                } else if (status == "Sudah Clock-Out") {
+                    Text("See you again!")
+                        .font(Font.custom("Futura", size: 20))
+                } else {
+                    Text("Happy learning!")
+                        .font(Font.custom("Futura", size: 20))
+                }
+            } else {
+                // Wkatu Setelah Clock Out
+                Text("Hari baru!")
+                    .font(Font.custom("Futura", size: 20))
             }
-        }
-        
-        VStack(alignment: .leading) {
-            Text(status).font(.system(size: 24, weight: .bold, design: .default))
-            Link(destination: URL(string: "https://google.com")!){
-                Text("Go To CiCo app")
-            }
+            
+            
             Button(action: {
-                buttonTitle = "Button clicked"
-            }){
                 
-                Text("Clock in now")
+            }){
+                Text("Go to RemindMe")
+                    .font(Font.custom("Futura", size: 15))
+                    .foregroundColor(.white)
+                    .frame(width: 138, height: 35)
+                    .background(Color(red: 26/255, green: 66/255, blue: 157/255))
+                    .cornerRadius(30)
             }
+            
         }
         
+    }
+    
+    func dateToString(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateString = dateFormatter.string(from: date)
+        
+        return dateString
+    }
+    
+    func makeTime(hour: Int, minute: Int) -> Date {
+        let calendar = Calendar.current
+        
+        var components = DateComponents()
+        components.year = calendar.component(.year, from: Date())
+        components.month = calendar.component(.month, from: Date())
+        components.day = calendar.component(.day, from: Date())
+        components.hour = hour
+        components.minute = minute
+        let date = Calendar.current.date(from: components)!
+        
+        return date
     }
 }
 
@@ -114,15 +145,16 @@ struct Test2Widget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             Test2WidgetEntryView(status: entry.storeData.status, entry: entry)
         }
+        .supportedFamilies([.systemSmall])
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
     }
 }
 
 struct Test2Widget_Previews: PreviewProvider {
-    static let storeData = StoreData(showText: "-", status: "Belum Clock-In")
+    static let storeData = StoreData(showText: "-", status: "Hari baru!")
     static var previews: some View {
         Test2WidgetEntryView(status: storeData.status, entry: SimpleEntry(storeData: storeData))
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

@@ -19,7 +19,7 @@ var phases: [Phase] = [
     .init(title: "Happy learning!", image: "ClockIn", description: "Selamat beraktivitas di\nApple Developer Academy @BINUS", status: .sudahClockIn),
     .init(title: "Saatnya clock-out", image: "CiCoReminder", description: "Jangan lupa untuk clock-out\nuntuk melengkapi presensi hari ini", status: .belumClockOut),
     .init(title: "See you again!", image: "ClockOut", description: "Selamat melanjutkan aktivitas\ndi rumah ataupun di academy", status: .sudahClockOut),
-    .init(title: "Selamat pagi", image: "ClockOut", description: "Hati-hati di jalan\nsaat menuju ke academy", status: .gantiHari),
+    .init(title: "Hari baru!", image: "ClockOut", description: "Hati-hati di jalan\nsaat menuju ke academy", status: .gantiHari),
 ]
 
 public enum Status: String, Codable {
@@ -27,5 +27,5 @@ public enum Status: String, Codable {
     case sudahClockIn = "Sudah Clock-In"
     case belumClockOut = "Belum Clock-Out"
     case sudahClockOut = "Sudah Clock-Out"
-    case gantiHari = "Ganti Hari"
+    case gantiHari = "Hari Baru!"
 }

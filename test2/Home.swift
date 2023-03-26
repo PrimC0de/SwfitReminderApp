@@ -83,35 +83,43 @@ struct ContentView : View{
             
         }.onAppear{
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                let now = makeTime(hour: 8, minute: 50)
+                let now = makeTime(hour: 8, minute: 30)
                 
                 if (now <= makeTime(hour: 8, minute: 50) && now >= makeTime(hour: 6, minute: 00)) {
-                    // Sebelum Waktu
                     phase = phases[4]
+                    sendData()
                 } else if now >= makeTime(hour: 8, minute: 50) && now <= makeTime(hour: 9, minute: 15) {
                     // Waktu Clock In
                     if (phase.status.rawValue == "Belum Clock-In") {
                         phase = phases[0]
+                        sendData()
                     } else if (phase.status.rawValue == "Sudah Clock-In") {
                         phase = phases[1]
+                        sendData()
                     } else {
                         phase = phases[0]
+                        sendData()
                     }
                 } else if now >= makeTime(hour: 9, minute: 15) && now <= makeTime(hour: 12, minute: 50) {
                     // Idle
                     phase = phases[1]
+                    sendData()
                 } else if (now > makeTime(hour: 12, minute: 50) && now <= makeTime(hour: 13, minute: 00)) {
                     // Waktu Clock Out
                     if (phase.status.rawValue == "Belum Clock-Out" || phase.status.rawValue == "Sudah Clock-In") {
                         phase = phases[2]
+                        sendData()
                     } else if (phase.status.rawValue == "Sudah Clock-Out") {
                         phase = phases[3]
+                        sendData()
                     } else {
                         phase = phases[1]
+                        sendData()
                     }
                 } else {
                     // Wkatu Setelah Clock Out
                     phase = phases[3]
+                    sendData()
                 }
             }
         }
