@@ -15,10 +15,11 @@ struct Phase: Codable {
 }
 
 var phases: [Phase] = [
-    .init(title: "Clock-in ngab!!!", image: "CiCoReminder", description: "jangan lupa clock-in\nkalau udah di lokasi ya ngab", status: .belumClockIn),
-    .init(title: "Mantap ngab..", image: "ClockIn", description: "selamat beraktivitas di\nApple Developer Academy ya ngab", status: .sudahClockIn),
-    .init(title: "Clock-out ngab!!!", image: "CiCoReminder", description: "jangan lupa clock-out\nbiar ga dianggap absen ya ngab", status: .belumClockOut),
-    .init(title: "Naise ngab..", image: "ClockOut", description: "selamat melanjutkan aktivitas\ndi rumah ataupun di academy ngab", status: .sudahClockOut)
+    .init(title: "Saatnya clock-in", image: "CiCoReminder", description: "Jangan lupa untuk clock-in\napabila sudah di lokasi", status: .belumClockIn),
+    .init(title: "Happy learning!", image: "ClockIn", description: "Selamat beraktivitas di\nApple Developer Academy @BINUS", status: .sudahClockIn),
+    .init(title: "Saatnya clock-out", image: "CiCoReminder", description: "Jangan lupa untuk clock-out\nuntuk melengkapi presensi hari ini", status: .belumClockOut),
+    .init(title: "See you again!", image: "ClockOut", description: "Selamat melanjutkan aktivitas\ndi rumah ataupun di academy", status: .sudahClockOut),
+    .init(title: "Selamat pagi", image: "ClockOut", description: "Hati-hati di jalan\nsaat menuju ke academy", status: .gantiHari),
 ]
 
 public enum Status: String, Codable {
@@ -26,4 +27,5 @@ public enum Status: String, Codable {
     case sudahClockIn = "Sudah Clock-In"
     case belumClockOut = "Belum Clock-Out"
     case sudahClockOut = "Sudah Clock-Out"
+    case gantiHari = "Ganti Hari"
 }
